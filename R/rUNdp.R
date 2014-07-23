@@ -81,12 +81,21 @@ fetch_undp_table <- function(table = "1: Human Development Index and its Compone
 }
 
 
-
-
-
-
-
-
+#' Get all tables from the API
+#' 
+#' This function downloads all available tables from the UNdp API
+#' 
+#' Failed downloads return an error string
+#' @return list of dataframes
+all_undp_tables <- function(){
+    lapply(1:12, function(tab){
+        tryCatch(fetch_undp_table(table = paste0(tab, ":")),
+                 error = function(e){url <- fetch_undp_table(table = paste0(tab, ":"), 
+                                                     query_string_only = TRUE)
+                             capture.output(getResponse(url, throw_error = FALSE))
+                 })
+    })
+}
 
 
 
