@@ -1,0 +1,19 @@
+Package: rUNdp
+Title: rUNdp: R integration with the UN development programme API
+Version: 0.1
+Maintainer: David A Springate <daspringate@gmail.com>
+Author: "David A Springate"
+Description: This package integrates with the UN Human Development Data API to
+    access data from 14 data tables (see http://hdr.undp.org/en/data/api). it
+    borrows (steals) heavily from the RSocrata package from the City of Chicago
+    (https://github.com/Chicago/RSocrata)
+Depends:
+    R (>= 3.0.2)
+License: GPL-3
+LazyData: true
+Imports:
+    jsonlite,
+    httr
+Suggests:
+    testthat,
+    roxygen2
