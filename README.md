@@ -31,13 +31,23 @@ The package provides partial matching for table names and record type, as well a
 
 The main user fetch function is `fetch_undp_table`.  This fetches one of the tables from the API and allows for selecting individual columns, as well as subsets of data and fuzzy matching.
 
-Note that the UNDP will soon be releasing the 2014 Human development report and this may have some breaking changes in the API
+Note that the UNDP have release the 2014 Human development report and some of the API functionality is not available/is broken from the main site.
 
 
 Examples
 ========
 
-## 1. Find the top 10 highest ranking countries, according to the Human development Index
+## 1. Download all data tables and store in a list
+
+Because of the changes in the API, this is the only example currently working properly
+
+```
+undp_tables <- all_undp_tables()
+
+```
+
+
+## 2. Find the top 10 highest ranking countries, according to the Human development Index
 
 ``` R
 > df <- fetch_undp_table(table = "1: Human", 
@@ -58,7 +68,7 @@ Examples
 10         Japan            0.912          JPN
 ```
 
-## 2. Comparisons of healthcare spending, HDI rank, infant and adult mortality
+## 3. Comparisons of healthcare spending, HDI rank, infant and adult mortality
 
 ``` R
 > df1 <- fetch_undp_table(table = "6: Command Over Resources", 
@@ -78,7 +88,7 @@ X_2009_adult_mortality_rate_female           -0.3474259       0.7789660         
 
 ```
 
-## 3. Set the order of returned results
+## 4. Set the order of returned results
 
 ``` R
 > order_asc <- fetch_undp_table(x4code = "wxub-qc5k", where = "_2012_hdi_rank<50", 
@@ -107,12 +117,6 @@ X_2009_adult_mortality_rate_female           -0.3474259       0.7789660         
 
 ```
 
-## 4. Download all data tables and store in a list
-
-```
-undp_tables <- all_undp_tables()
-
-```
 
 Any errors will be represented as an error string
 

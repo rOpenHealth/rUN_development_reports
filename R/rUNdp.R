@@ -6,20 +6,24 @@
 #' @param table_name Character string to match the table names in the database
 #' @return Character string of a socrata 4x4 code
 .api_endpoints <- function(table_name){
-    endpoints <- list("1: Human Development Index and its Components" = "wxub-qc5k",
-                      "2: Human Development Index Trends" = "efc4-gjvq",
-                      "3: Inequality-Adjusted Human Development" = "9jnv-7hyp",
-                      "4: Gender Inequality Index" = "pq34-nwq7",
-                      "5: Multidimensional Poverty Index" = "p2z-5b33",
-                      "6: Command Over Resources" = "ti85-2nvi",
-                      "7: Health" = "iv8b-7gbj",
-                      "8: Education"  = "mvtz-nsye",
-                      "9: Social Integration" = "n9mf-gwye",
-                      "10: International Trade Flows of Goods and Services" = "itri-v7qr",
-                      "11: International Capital Flows and Migrations" = "3esk-n839",
-                      "12: Innovation and Technology" = "jixu-gnyy",
-                      "13: Environment" = "ki8j-r4i6",
-                      "14: Population" = "e6xu-b22v")
+    endpoints <- list("1: Human Development Index and its Components" = "myer-egms",
+                      "2: Human Development Index Trends" = "y8j2-3vi9",
+                      "3: Inequality-Adjusted Human Development Index" = "n8fa-gx39",
+                      "4: Gender Inequality Index" = "ku9i-8fxp",
+                      "5: Gender related Development Index" = "me25-gsuv",
+                      "6: Multidimensional Poverty Index" = "frx9-rb5i",
+                      "7: Multidimensional Poverty Index - changes over time for select countries" = "263u-f92z",
+                      "8: Command Over Resources" = "ti85-2nvi",
+                      "9: Health - Children and Youth" = "d27x-j4an",
+                      "10: Adult Health and Health Expenditure" = "qdu3-trb6",
+                      "11: Education"  = "xn26-t7qa",
+                      "12: Command over and allocation of resources" = "3rcm-zfpk",
+                      "13: Social Competencies" = "5kdi-xutn",
+                      "14: Personal Insecurity" = "qie2-6sik",
+                      "15: International Integration" = "2g3j-ecrk",
+                      "16: Environment" = "sf29-qtcx",
+                      "17: Population trends" = "3vja-izgd",
+                      "18: Supplementary indicators: Perceptions of wellbeing" = "p79w-icq5")
     endpoints[[match.arg(table_name, names(endpoints))]]
 }
 
@@ -86,9 +90,10 @@ fetch_undp_table <- function(table = "1: Human Development Index and its Compone
 #' This function downloads all available tables from the UNdp API
 #' 
 #' Failed downloads return an error string
+#' @export
 #' @return list of dataframes
 all_undp_tables <- function(){
-    lapply(1:12, function(tab){
+    lapply(1:18, function(tab){
         tryCatch(fetch_undp_table(table = paste0(tab, ":")),
                  error = function(e){url <- fetch_undp_table(table = paste0(tab, ":"), 
                                                      query_string_only = TRUE)
